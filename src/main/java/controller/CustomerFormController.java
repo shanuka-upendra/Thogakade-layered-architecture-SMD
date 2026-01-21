@@ -1,6 +1,5 @@
 package controller;
 
-
 import config.Config;
 import dto.CustomerDto;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-//@RequiredArgsConstructor
 public class CustomerFormController implements Initializable {
 
     CustomerService customerService = Config.getService();
@@ -205,7 +203,5 @@ public class CustomerFormController implements Initializable {
                 dateDOB.setValue(LocalDate.parse(dobString, formatter));
             }
         }
-
-
     }
 }
