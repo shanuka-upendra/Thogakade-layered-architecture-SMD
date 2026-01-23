@@ -3,9 +3,7 @@ package service.impl;
 import config.Config;
 import dto.CustomerDto;
 import javafx.collections.ObservableList;
-import lombok.RequiredArgsConstructor;
 import repository.CustomerRepository;
-import repository.CustomerRepositoryImpl;
 import service.CustomerService;
 
 import java.time.LocalDate;

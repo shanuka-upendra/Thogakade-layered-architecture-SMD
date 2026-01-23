@@ -20,11 +20,19 @@ public class DashboardFormController {
             throw new RuntimeException(e);
         }
         stage.show();
-        stage.setTitle("Customer");
+        stage.setTitle("Customers");
     }
 
     @FXML
     void btnItemOnAction(ActionEvent event) {
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+        stage.setTitle("Items");
+
 
     }
 
