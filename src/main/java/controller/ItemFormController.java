@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.ItemService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ItemFormController implements Initializable {
@@ -74,7 +75,7 @@ public class ItemFormController implements Initializable {
     }
 
     @FXML
-    void btnSearchItemOnAction(ActionEvent event) {
+    void btnSearchItemOnAction(ActionEvent event) throws SQLException {
         ItemDto item = itemService.searchItem(txtItemCode.getText());
 
         if(item != null){

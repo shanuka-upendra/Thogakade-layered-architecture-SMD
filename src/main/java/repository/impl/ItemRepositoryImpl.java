@@ -66,51 +66,23 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     @Override
-    public ItemDto searchItem(String code) {
-        try {
+    public ResultSet searchItem(String code) throws SQLException {
+
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item WHERE ItemCode = ?");
             preparedStatement.setString(1,code);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                return new ItemDto(
-                        resultSet.getString("ItemCode"),
-                        resultSet.getString("Description"),
-                        resultSet.getString("PackSize"),
-                        resultSet.getDouble("UnitPrice"),
-                        resultSet.getInt("QtyOnHand")
-                );
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        return resultSet;
     }
 
     @Override
-    public ObservableList<ItemDto> getAllItems() {
-        ObservableList<ItemDto> itemDtoList = FXCollections.observableArrayList();
+    public ResultSet getAllItems() throws SQLException {
 
-        try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                ItemDto itemDto = new ItemDto(
-                        resultSet.getString("ItemCode"),
-                        resultSet.getString("Description"),
-                        resultSet.getString("PackSize"),
-                        resultSet.getDouble("UnitPrice"),
-                        resultSet.getInt("QtyOnHand")
-                );
-                itemDtoList.add(itemDto);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return itemDtoList;
+        return resultSet;
     }
 }

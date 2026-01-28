@@ -2,9 +2,13 @@ package service.impl;
 
 import config.Config;
 import dto.ItemDto;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import repository.ItemRepository;
 import service.ItemService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ItemServiceImpl implements ItemService {
 
@@ -27,12 +31,45 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDto searchItem(String code) {
-        return itemRepository.searchItem(code);
-    }
+    public ItemDto searchItem(String code) throws SQLException {
+        ItemDto itemDto = null;
+        ResultSet resultSet = itemRepository.searchItem(code);
+
+            try {
+                while (resultSet.next()) {
+                    itemDto = new ItemDto(
+                            resultSet.getString("ItemCode"),
+                            resultSet.getString("Description"),
+                            resultSet.getString("PackSize"),
+                            resultSet.getDouble("UnitPrice"),
+                            resultSet.getInt("QtyOnHand")
+                    );
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return itemDto;
+        }
+
 
     @Override
     public ObservableList<ItemDto> getAllItems() {
-        return itemRepository.getAllItems();
+        ObservableList<ItemDto> itemDetails = FXCollections.observableArrayList();
+
+        try {
+            ResultSet resultSet = itemRepository.getAllItems();
+            while (resultSet.next()) {
+                itemDetails.add(new ItemDto(
+                        resultSet.getString("ItemCode"),
+                        resultSet.getString("Description"),
+                        resultSet.getString("PackSize"),
+                        resultSet.getDouble("UnitPrice"),
+                        resultSet.getInt("QtyOnHand")
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return itemDetails;
     }
 }
