@@ -1,24 +1,24 @@
 package config;
 
-import repository.impl.CustomerRepositoryImpl;
-import repository.impl.ItemRepositoryImpl;
-import service.impl.CustomerServiceImpl;
-import service.impl.ItemServiceImpl;
+import repository.impl.CustomerDaoImpl;
+import repository.impl.ItemDaoImpl;
+import service.impl.CustomerBoImpl;
+import service.impl.ItemBoImpl;
 
 public class Config {
-    public static CustomerRepositoryImpl getCustomer(){
-        return new CustomerRepositoryImpl();
+    public static CustomerDaoImpl getCustomer(){
+        return new CustomerDaoImpl();
     }
 
-    public static CustomerServiceImpl getService(){
-        return new CustomerServiceImpl();
+    public static CustomerBoImpl getService(){
+        return new CustomerBoImpl();
     }
 
-    public static ItemRepositoryImpl getItemRepo(){
-        return new ItemRepositoryImpl();
+    public static ItemDaoImpl getItemRepo(){
+        return new ItemDaoImpl();
     }
 
-    public static ItemServiceImpl getItemSev(){
-        return new ItemServiceImpl();
+    public static ItemBoImpl getItemSev(){
+        return new ItemBoImpl();
     }
 }

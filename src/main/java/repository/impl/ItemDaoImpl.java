@@ -1,17 +1,14 @@
 package repository.impl;
 
 import db.DBConnection;
-import dto.ItemDto;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import repository.ItemRepository;
+import repository.ItemDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ItemRepositoryImpl implements ItemRepository {
+public class ItemDaoImpl implements ItemDao {
 
     @Override
     public void addItem(String code, String desc, String size, Double price, Integer qty) {

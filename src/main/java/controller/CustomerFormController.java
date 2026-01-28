@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.CustomerService;
+import service.CustomerBo;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class CustomerFormController implements Initializable {
 
-    CustomerService customerService = Config.getService();
+    CustomerBo customerBo = Config.getService();
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -88,7 +88,7 @@ public class CustomerFormController implements Initializable {
         String province = txtProvince.getText();
         String postalCode = txtPostalCode.getText();
 
-        customerService.addCustomer(id,title,name,DOB,salary,address,city,province,postalCode);
+        customerBo.addCustomer(id,title,name,DOB,salary,address,city,province,postalCode);
         loadTableCustomers();
         clearText();
 
@@ -106,7 +106,7 @@ public class CustomerFormController implements Initializable {
         String postalCode = txtPostalCode.getText();
         String id = txtCustomerId.getText();
 
-        customerService.updateCustomer(title,name,DOB,salary,address,city,province,postalCode,id);
+        customerBo.updateCustomer(title,name,DOB,salary,address,city,province,postalCode,id);
         loadTableCustomers();
         clearText();
 
@@ -114,7 +114,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnDeleteCustomerOnAction(ActionEvent event) {
-        customerService.deleteCustomer(txtCustomerId.getText());
+        customerBo.deleteCustomer(txtCustomerId.getText());
         loadTableCustomers();
         clearText();
 
@@ -122,7 +122,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnSearchCustomerOnAction(ActionEvent event) throws SQLException {
-        CustomerDto customer = customerService.searchCustomer(txtCustomerId.getText());
+        CustomerDto customer = customerBo.searchCustomer(txtCustomerId.getText());
 
         if(customer != null) {
             setDataToFields(customer);
@@ -141,7 +141,7 @@ public class CustomerFormController implements Initializable {
     }
 
     void loadTableCustomers() {
-        tblCustomers.setItems(customerService.getAllCustomers());
+        tblCustomers.setItems(customerBo.getAllCustomers());
     }
 
     void clearText(){

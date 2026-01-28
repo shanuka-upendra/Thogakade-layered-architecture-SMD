@@ -1,10 +1,7 @@
 package repository.impl;
 
 import db.DBConnection;
-import dto.CustomerDto;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import repository.CustomerRepository;
+import repository.CustomerDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class CustomerRepositoryImpl implements CustomerRepository {
-
-
+public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void addCustomer(String id, String title, String name, LocalDate DOB, Double salary, String address, String city, String province, String postalCode) {

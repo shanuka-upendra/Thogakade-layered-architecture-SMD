@@ -10,7 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.ItemService;
+import service.ItemBo;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class ItemFormController implements Initializable {
 
-    ItemService itemService = Config.getItemSev();
+    ItemBo itemBo = Config.getItemSev();
 
     @FXML
     private TableColumn<?, ?> colDescription;
@@ -61,7 +61,7 @@ public class ItemFormController implements Initializable {
         Double price = Double.valueOf(txtUnitPrice.getText());
         Integer qty = Integer.valueOf(txtQty.getText());
 
-        itemService.addItem(code,desc,packSize,price,qty);
+        itemBo.addItem(code,desc,packSize,price,qty);
         loadItemTable();
         clearText();
 
@@ -69,14 +69,14 @@ public class ItemFormController implements Initializable {
 
     @FXML
     void btnDeleteItemOnAction(ActionEvent event) {
-        itemService.deleteItem(txtItemCode.getText());
+        itemBo.deleteItem(txtItemCode.getText());
         loadItemTable();
         clearText();
     }
 
     @FXML
     void btnSearchItemOnAction(ActionEvent event) throws SQLException {
-        ItemDto item = itemService.searchItem(txtItemCode.getText());
+        ItemDto item = itemBo.searchItem(txtItemCode.getText());
 
         if(item != null){
             setDataToFields(item);
@@ -102,12 +102,12 @@ public class ItemFormController implements Initializable {
         Double price = Double.valueOf(txtUnitPrice.getText());
         Integer qty = Integer.valueOf(txtQty.getText());
 
-        itemService.updateItem(desc,packSize,price,qty,code);
+        itemBo.updateItem(desc,packSize,price,qty,code);
 
     }
 
     void loadItemTable(){
-        tblItems.setItems(itemService.getAllItems());
+        tblItems.setItems(itemBo.getAllItems());
     }
 
     void setDataToFields(ItemDto item){
