@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.CustomerService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -120,7 +121,7 @@ public class CustomerFormController implements Initializable {
     }
 
     @FXML
-    void btnSearchCustomerOnAction(ActionEvent event) {
+    void btnSearchCustomerOnAction(ActionEvent event) throws SQLException {
         CustomerDto customer = customerService.searchCustomer(txtCustomerId.getText());
 
         if(customer != null) {

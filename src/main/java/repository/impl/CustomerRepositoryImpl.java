@@ -63,33 +63,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public ObservableList<CustomerDto> getAllCustomers() {
-        ObservableList<CustomerDto> customerInfoDto = FXCollections.observableArrayList();
-
-        try {
+    public ResultSet getAllCustomers() throws SQLException {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                CustomerDto customerDto = new CustomerDto(
-                        resultSet.getString("CustID"),
-                        resultSet.getString("CustTitle"),
-                        resultSet.getString("CustName"),
-                        resultSet.getDate("DOB"),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("CustAddress"),
-                        resultSet.getString("City"),
-                        resultSet.getString("Province"),
-                        resultSet.getString("PostalCode")
-                );
-                customerInfoDto.add(customerDto);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return customerInfoDto;
+        return resultSet;
     }
 
     @Override
@@ -108,30 +87,13 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public CustomerDto searchCustomer(String id) {
-        try {
+    public ResultSet searchCustomer(String id) throws SQLException {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
             preparedStatement.setString(1,id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()){
-                return new CustomerDto(
-                        resultSet.getString("CustID"),
-                        resultSet.getString("CustTitle"),
-                        resultSet.getString("CustName"),
-                        resultSet.getDate("DOB"),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("CustAddress"),
-                        resultSet.getString("City"),
-                        resultSet.getString("Province"),
-                        resultSet.getString("PostalCode")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        return resultSet;
     }
 }
