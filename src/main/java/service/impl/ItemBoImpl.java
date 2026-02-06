@@ -72,4 +72,16 @@ public class ItemBoImpl implements ItemBo {
         }
         return itemDetails;
     }
+
+    @Override
+    public Double getUnitPrice(String price) throws SQLException {
+        return itemDao.getUnitPrice(price);
+    }
+
+    @Override
+    public String getItemCode(String value) throws SQLException {
+        return itemDao.getItemCode(value);
+    }
+
+
 }

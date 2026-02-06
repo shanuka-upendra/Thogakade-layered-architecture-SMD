@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.placeorder.PlaceOrderFormController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="960.0">
@@ -32,8 +31,8 @@
             </TableView>
             <TextField fx:id="txtCustomerId" layoutX="707.0" layoutY="190.0" onKeyPressed="#txtCustomerIdOnKeyPressed" prefHeight="26.0" prefWidth="83.0" promptText="Customer ID" />
             <TextField fx:id="txtCustomerName" layoutX="707.0" layoutY="227.0" prefHeight="26.0" prefWidth="207.0" promptText="Name" />
-            <TextField fx:id="txtUnitPrice" layoutX="707.0" layoutY="317.0" prefHeight="26.0" prefWidth="92.0" promptText="Unit Price" />
-            <TextField fx:id="txtQunatity" layoutX="809.0" layoutY="318.0" prefHeight="26.0" prefWidth="92.0" promptText="Quantity" />
+            <TextField fx:id="txtUnitPrice" layoutX="809.0" layoutY="319.0" prefHeight="26.0" prefWidth="92.0" promptText="Unit Price" />
+            <TextField fx:id="txtQunatity" layoutX="809.0" layoutY="355.0" prefHeight="26.0" prefWidth="92.0" promptText="Quantity" />
             <Label fx:id="lblNetTotal" alignment="CENTER_RIGHT" layoutX="820.0" layoutY="461.0" prefHeight="31.0" prefWidth="92.0" text="0.0">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -56,6 +55,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="txtItemCode" layoutX="707.0" layoutY="319.0" prefHeight="26.0" prefWidth="92.0" promptText="ItemCode" />
          </children>
       </AnchorPane>
    </children>

@@ -11,4 +11,6 @@ public interface ItemBo {
     void deleteItem(String code);
     ItemDto searchItem(String code) throws SQLException;
     ObservableList<ItemDto> getAllItems();
+    Double getUnitPrice(String s) throws SQLException;
+    String getItemCode(String value) throws SQLException;
 }

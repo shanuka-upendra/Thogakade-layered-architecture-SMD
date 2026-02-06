@@ -82,4 +82,26 @@ public class ItemDaoImpl implements ItemDao {
 
         return resultSet;
     }
+
+    @Override
+    public Double getUnitPrice(String s) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT UnitPrice FROM item WHERE Description = ?");
+        preparedStatement.setString(1,s);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getDouble(1);
+    }
+
+    @Override
+    public String getItemCode(String value) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT ItemCode FROM item WHERE Description = ?");
+        preparedStatement.setString(1,value);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getString(1);
+    }
 }

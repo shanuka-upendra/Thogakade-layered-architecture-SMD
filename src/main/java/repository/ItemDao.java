@@ -9,4 +9,6 @@ public interface ItemDao {
     void deleteItem(String code);
     ResultSet searchItem(String code) throws SQLException;
     ResultSet getAllItems() throws SQLException;
+    Double getUnitPrice(String s) throws SQLException;
+    String getItemCode(String value) throws SQLException;
 }
