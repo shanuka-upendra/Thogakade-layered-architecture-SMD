@@ -91,4 +91,18 @@ public class CustomerDaoImpl implements CustomerDao {
 
         return resultSet;
     }
+
+    @Override
+    public String getCustomerNameById(String text) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustName FROM customer WHERE CustId = ?");
+        preparedStatement.setString(1,text);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String name = "";
+        while (resultSet.next()){
+            name = resultSet.getString(1);
+        }
+        return name;
+    }
 }

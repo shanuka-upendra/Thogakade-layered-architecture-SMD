@@ -10,4 +10,5 @@ public interface CustomerDao {
     ResultSet getAllCustomers() throws SQLException;
     void deleteCustomer(String id);
     ResultSet searchCustomer(String id) throws SQLException;
+    String getCustomerNameById(String text) throws SQLException;
 }

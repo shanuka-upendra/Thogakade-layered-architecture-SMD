@@ -12,4 +12,5 @@ public interface CustomerBo {
     ObservableList<CustomerDto> getAllCustomers();
     void deleteCustomer(String id);
     CustomerDto searchCustomer(String id) throws SQLException;
+    String getCustomerNameById(String text) throws SQLException;
 }
