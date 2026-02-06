@@ -11,6 +11,6 @@ public interface CustomerBo {
     void updateCustomer(String title, String name, LocalDate DOB,Double salary,String address,String city,String province,String postalCode,String id);
     ObservableList<CustomerDto> getAllCustomers();
     void deleteCustomer(String id);
-    CustomerDto searchCustomer(String id) throws SQLException;
-    String getCustomerNameById(String text) throws SQLException;
+    CustomerDto searchCustomer(String id);
+    String getCustomerNameById(String text);
 }

@@ -58,12 +58,17 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public ResultSet getAllCustomers() throws SQLException {
+    public ResultSet getAllCustomers(){
+        try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer");
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
-        return resultSet;
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -82,27 +87,35 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public ResultSet searchCustomer(String id) throws SQLException {
+    public ResultSet searchCustomer(String id){
+        try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
             preparedStatement.setString(1,id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-        return resultSet;
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public String getCustomerNameById(String text) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustName FROM customer WHERE CustId = ?");
-        preparedStatement.setString(1,text);
+    public String getCustomerNameById(String text){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustName FROM customer WHERE CustId = ?");
+            preparedStatement.setString(1,text);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        String name = "";
-        while (resultSet.next()){
-            name = resultSet.getString(1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            String name = "";
+            while (resultSet.next()){
+                name = resultSet.getString(1);
+            }
+            return name;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return name;
     }
 }

@@ -106,14 +106,14 @@ public class PlaceOrderFormController implements Initializable {
     }
 
     @FXML
-    void cmbItemsOnAction(ActionEvent event) throws SQLException {
+    void cmbItemsOnAction(ActionEvent event){
         txtUnitPrice.setText(String.valueOf(placeOrderBo.getUnitPrice(cmbItems.getValue())));
         txtItemCode.setText(placeOrderBo.getItemCode(cmbItems.getValue()));
 
     }
 
     @FXML
-    void txtCustomerIdOnKeyPressed(KeyEvent event) throws SQLException {
+    void txtCustomerIdOnKeyPressed(KeyEvent event){
         txtCustomerName.setText(placeOrderBo.getCustomerNameById(txtCustomerId.getText()));
     }
 
@@ -130,11 +130,7 @@ public class PlaceOrderFormController implements Initializable {
         tblPlaceOrder.setItems(addCart);
 
         ObservableList<ItemDto> getAllItems = null;
-        try {
-            getAllItems = placeOrderBo.getAllItems();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        getAllItems = placeOrderBo.getAllItems();
         ObservableList<String> getNameItem = FXCollections.observableArrayList();
             for (ItemDto itemDto : getAllItems){
                 getNameItem.add(itemDto.getDescription());

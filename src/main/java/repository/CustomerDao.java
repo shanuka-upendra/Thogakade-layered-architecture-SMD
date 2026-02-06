@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public interface CustomerDao {
     void addCustomer(String id, String title, String name, LocalDate DOB, Double salary, String address, String city, String province, String postalCode);
     void updateCustomer(String title, String name, LocalDate DOB,Double salary,String address,String city,String province,String postalCode,String id);
-    ResultSet getAllCustomers() throws SQLException;
+    ResultSet getAllCustomers();
     void deleteCustomer(String id);
-    ResultSet searchCustomer(String id) throws SQLException;
-    String getCustomerNameById(String text) throws SQLException;
+    ResultSet searchCustomer(String id);
+    String getCustomerNameById(String text);
 }

@@ -88,7 +88,7 @@ public class CustomerBoImpl implements CustomerBo {
     }
 
     @Override
-    public String getCustomerNameById(String text) throws SQLException {
+    public String getCustomerNameById(String text){
         return customerDao.getCustomerNameById(text);
     }
 }

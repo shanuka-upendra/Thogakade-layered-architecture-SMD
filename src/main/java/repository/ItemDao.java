@@ -7,8 +7,8 @@ public interface ItemDao {
     void addItem(String code, String desc, String size, Double price, Integer qty);
     void updateItem(String desc, String size, Double price, Integer qty,String code);
     void deleteItem(String code);
-    ResultSet searchItem(String code) throws SQLException;
-    ResultSet getAllItems() throws SQLException;
-    Double getUnitPrice(String s) throws SQLException;
-    String getItemCode(String value) throws SQLException;
+    ResultSet searchItem(String code);
+    ResultSet getAllItems();
+    Double getUnitPrice(String s);
+    String getItemCode(String value);
 }

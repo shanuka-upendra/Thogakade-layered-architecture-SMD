@@ -16,22 +16,22 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     ItemBo itemBo = new ItemBoImpl();
 
     @Override
-    public Double getUnitPrice(String s) throws SQLException {
+    public Double getUnitPrice(String s) {
         return itemBo.getUnitPrice(s);
     }
 
     @Override
-    public String getItemCode(String value) throws SQLException {
+    public String getItemCode(String value){
         return itemBo.getItemCode(value);
     }
 
     @Override
-    public String getCustomerNameById(String text) throws SQLException {
+    public String getCustomerNameById(String text){
         return customerBo.getCustomerNameById(text);
     }
 
     @Override
-    public ObservableList<ItemDto> getAllItems() throws SQLException {
+    public ObservableList<ItemDto> getAllItems(){
         return itemBo.getAllItems();
     }
 }

@@ -31,11 +31,10 @@ public class ItemBoImpl implements ItemBo {
     }
 
     @Override
-    public ItemDto searchItem(String code) throws SQLException {
+    public ItemDto searchItem(String code){
         ItemDto itemDto = null;
-        ResultSet resultSet = itemDao.searchItem(code);
-
             try {
+                ResultSet resultSet = itemDao.searchItem(code);
                 while (resultSet.next()) {
                     itemDto = new ItemDto(
                             resultSet.getString("ItemCode"),
@@ -74,12 +73,12 @@ public class ItemBoImpl implements ItemBo {
     }
 
     @Override
-    public Double getUnitPrice(String price) throws SQLException {
+    public Double getUnitPrice(String price){
         return itemDao.getUnitPrice(price);
     }
 
     @Override
-    public String getItemCode(String value) throws SQLException {
+    public String getItemCode(String value){
         return itemDao.getItemCode(value);
     }
 

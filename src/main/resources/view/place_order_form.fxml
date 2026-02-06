@@ -25,7 +25,7 @@
                   <TableColumn fx:id="colDescription" prefWidth="110.4000244140625" text="Description" />
                   <TableColumn fx:id="colQuantity" prefWidth="110.4000244140625" text="Quantity" />
                   <TableColumn fx:id="colUnitPrice" prefWidth="110.4000244140625" text="Unit Price" />
-                  <TableColumn fx:id="colDiscount" prefWidth="110.4000244140625" text="Discount" />
+                  <TableColumn fx:id="colDiscount" prefWidth="110.4000244140625" text="Discount (%)" />
                   <TableColumn fx:id="colTotal" prefWidth="110.4000244140625" text="Total" />
                </columns>
             </TableView>
@@ -45,7 +45,7 @@
             </Label>
             <Button layoutX="707.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnAddToCartOnAction" prefHeight="26.0" prefWidth="207.0" text="Add to Cart" />
             <Button layoutX="711.0" layoutY="510.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" prefHeight="26.0" prefWidth="207.0" text="Place Order" />
-            <TextField fx:id="txtDiscount" layoutX="707.0" layoutY="355.0" prefHeight="26.0" prefWidth="92.0" promptText="Discount" />
+            <TextField fx:id="txtDiscount" layoutX="707.0" layoutY="355.0" prefHeight="26.0" prefWidth="92.0" promptText="Discount (%)" />
             <ComboBox fx:id="cmbItems" layoutX="707.0" layoutY="277.0" onAction="#cmbItemsOnAction" prefHeight="26.0" prefWidth="207.0" promptText="Item Code , Desc" />
             <Line endX="100.0" layoutX="809.0" layoutY="179.0" startX="-100.0" />
             <Line endX="100.0" layoutX="810.0" layoutY="266.0" startX="-100.0" />

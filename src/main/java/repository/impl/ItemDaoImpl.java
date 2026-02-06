@@ -63,45 +63,62 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public ResultSet searchItem(String code) throws SQLException {
+    public ResultSet searchItem(String code){
 
+        try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item WHERE ItemCode = ?");
             preparedStatement.setString(1,code);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-        return resultSet;
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
-    public ResultSet getAllItems() throws SQLException {
+    public ResultSet getAllItems(){
 
+        try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-        return resultSet;
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public Double getUnitPrice(String s) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT UnitPrice FROM item WHERE Description = ?");
-        preparedStatement.setString(1,s);
+    public Double getUnitPrice(String s) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT UnitPrice FROM item WHERE Description = ?");
+            preparedStatement.setString(1,s);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getDouble(1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getDouble(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public String getItemCode(String value) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT ItemCode FROM item WHERE Description = ?");
-        preparedStatement.setString(1,value);
+    public String getItemCode(String value){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT ItemCode FROM item WHERE Description = ?");
+            preparedStatement.setString(1,value);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getString(1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getString(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
