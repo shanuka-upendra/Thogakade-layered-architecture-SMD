@@ -2,25 +2,16 @@ package controller.placeorder;
 
 import dto.CartDto;
 import dto.ItemDto;
-import dto.OrderDetailDto;
 import dto.OrderDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import service.CustomerBo;
-import service.ItemBo;
 import service.PlaceOrderBo;
-import service.impl.CustomerBoImpl;
-import service.impl.ItemBoImpl;
 import service.impl.PlaceOrderBoImpl;
 
 import java.net.URL;
@@ -99,7 +90,6 @@ public class PlaceOrderFormController implements Initializable {
         getTotal(((Double.parseDouble(txtUnitPrice.getText())*
                 Integer.parseInt(txtQunatity.getText()))*(
                 100-(Double.parseDouble(txtDiscount.getText())))/100));
-        clearText();
     }
 
     void getTotal(Double value){
@@ -109,11 +99,17 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
-        placeOrderBo.addOrder(new OrderDto(
-                txtOrderId.getText(),
-                LocalDate.now(),
-                txtCustomerId.getText()
-        ),addCart);
+        if(!isValidate())return;
+        System.out.println(!isValidate());
+        try {
+            placeOrderBo.addOrder(new OrderDto(
+                    txtOrderId.getText(),
+                    LocalDate.now(),
+                    txtCustomerId.getText()
+            ),addCart);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -154,5 +150,12 @@ public class PlaceOrderFormController implements Initializable {
         txtUnitPrice.clear();
         txtDiscount.clear();
         txtQunatity.clear();
+    }
+
+    boolean isValidate(){
+        if(addCart.isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

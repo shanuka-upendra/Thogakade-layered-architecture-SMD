@@ -13,14 +13,15 @@ public class PlaceOrderDetailsBoImpl implements PlaceOrderDetailsBo {
     PlaceOrderDetailsDao placeOrderDetailsDao = new PlaceOrderDetailsDaoImpl();
 
     @Override
-    public void addOrder(OrderDto orderDto, ObservableList<CartDto> addCart) {
+    public boolean addOrder(OrderDto orderDto, ObservableList<CartDto> addCart) {
         for(CartDto cartItemDto : addCart){
-            placeOrderDetailsDao.addOrderDetails(new OrderDetailDto(
+            return placeOrderDetailsDao.addOrderDetails(new OrderDetailDto(
                     orderDto.getOrderId(),
                     cartItemDto.getItemCode(),
                     cartItemDto.getQty(),
                     Integer.valueOf(cartItemDto.getDiscount())
             ));
         }
+        return false;
     }
 }
