@@ -11,4 +11,5 @@ public interface ItemDao {
     ResultSet getAllItems();
     Double getUnitPrice(String s);
     String getItemCode(String value);
+    void updateItemQty(String itemCode, Integer qty);
 }

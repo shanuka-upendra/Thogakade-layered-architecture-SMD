@@ -1,7 +1,9 @@
 package service.impl;
 
 import config.Config;
+import dto.CartDto;
 import dto.ItemDto;
+import dto.OrderDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import repository.ItemDao;
@@ -80,6 +82,13 @@ public class ItemBoImpl implements ItemBo {
     @Override
     public String getItemCode(String value){
         return itemDao.getItemCode(value);
+    }
+
+    @Override
+    public void updateItemQty(OrderDto orderDto, ObservableList<CartDto> addCart) {
+        for(CartDto cartItemDto:addCart){
+            itemDao.updateItemQty(cartItemDto.getItemCode(),cartItemDto.getQty());
+        }
     }
 
 

@@ -1,6 +1,8 @@
 package service;
 
+import dto.CartDto;
 import dto.ItemDto;
+import dto.OrderDto;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -13,4 +15,5 @@ public interface ItemBo {
     ObservableList<ItemDto> getAllItems();
     Double getUnitPrice(String s);
     String getItemCode(String value);
+    void updateItemQty(OrderDto orderDto, ObservableList<CartDto> addCart);
 }
