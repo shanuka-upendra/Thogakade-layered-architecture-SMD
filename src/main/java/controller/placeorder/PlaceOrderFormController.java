@@ -2,6 +2,8 @@ package controller.placeorder;
 
 import dto.CartDto;
 import dto.ItemDto;
+import dto.OrderDetailDto;
+import dto.OrderDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import service.impl.PlaceOrderBoImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PlaceOrderFormController implements Initializable {
@@ -31,6 +34,7 @@ public class PlaceOrderFormController implements Initializable {
 
     ObservableList<CartDto> addCart = FXCollections.observableArrayList();
     Double total = 0.0;
+
 
     @FXML
     private ComboBox<String> cmbItems;
@@ -78,6 +82,9 @@ public class PlaceOrderFormController implements Initializable {
     private TextField txtUnitPrice;
 
     @FXML
+    private TextField txtOrderId;
+
+    @FXML
     void btnAddToCartOnAction(ActionEvent event) {
         addCart.add(new CartDto(
                 txtItemCode.getText(),
@@ -102,7 +109,11 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
-
+        placeOrderBo.addOrder(new OrderDto(
+                txtOrderId.getText(),
+                LocalDate.now(),
+                txtCustomerId.getText()
+        ),addCart);
     }
 
     @FXML

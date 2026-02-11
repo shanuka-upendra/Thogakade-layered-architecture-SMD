@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.CustomerBo;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -121,7 +120,7 @@ public class CustomerFormController implements Initializable {
     }
 
     @FXML
-    void btnSearchCustomerOnAction(ActionEvent event) throws SQLException {
+    void btnSearchCustomerOnAction(ActionEvent event){
         CustomerDto customer = customerBo.searchCustomer(txtCustomerId.getText());
 
         if(customer != null) {
@@ -198,8 +197,7 @@ public class CustomerFormController implements Initializable {
                 dateDOB.setValue(sqlDate.toLocalDate());
             }
 
-            else if (dobValue instanceof String) {
-                String dobString = (String) dobValue;
+            else if (dobValue instanceof String dobString) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 dateDOB.setValue(LocalDate.parse(dobString, formatter));
             }
