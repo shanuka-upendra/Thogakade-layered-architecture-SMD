@@ -126,14 +126,14 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public void updateItemQty(String itemCode, Integer qty) {
+    public boolean updateItemQty(String itemCode, Integer qty) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item SET QtyOnHand = QtyOnHand - ? WHERE itemCode = ?");
             preparedStatement.setObject(1,qty);
             preparedStatement.setObject(2,itemCode);
 
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -1,7 +1,6 @@
 package repository;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public interface ItemDao {
     void addItem(String code, String desc, String size, Double price, Integer qty);
@@ -11,5 +10,5 @@ public interface ItemDao {
     ResultSet getAllItems();
     Double getUnitPrice(String s);
     String getItemCode(String value);
-    void updateItemQty(String itemCode, Integer qty);
+    boolean updateItemQty(String itemCode, Integer qty);
 }

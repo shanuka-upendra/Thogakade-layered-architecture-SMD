@@ -85,10 +85,11 @@ public class ItemBoImpl implements ItemBo {
     }
 
     @Override
-    public void updateItemQty(OrderDto orderDto, ObservableList<CartDto> addCart) {
+    public boolean updateItemQty(OrderDto orderDto, ObservableList<CartDto> addCart) {
         for(CartDto cartItemDto:addCart){
-            itemDao.updateItemQty(cartItemDto.getItemCode(),cartItemDto.getQty());
+            return itemDao.updateItemQty(cartItemDto.getItemCode(),cartItemDto.getQty());
         }
+        return false;
     }
 
 
