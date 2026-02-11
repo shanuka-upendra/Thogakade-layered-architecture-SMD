@@ -29,7 +29,7 @@
                   <TableColumn fx:id="colTotal" prefWidth="110.4000244140625" text="Total" />
                </columns>
             </TableView>
-            <TextField fx:id="txtCustomerId" layoutX="707.0" layoutY="190.0" onKeyPressed="#txtCustomerIdOnKeyPressed" prefHeight="26.0" prefWidth="83.0" promptText="Customer ID" />
+            <TextField fx:id="txtCustomerId" layoutX="821.0" layoutY="191.0" onKeyPressed="#txtCustomerIdOnKeyPressed" prefHeight="26.0" prefWidth="83.0" promptText="Customer ID" />
             <TextField fx:id="txtCustomerName" layoutX="707.0" layoutY="227.0" prefHeight="26.0" prefWidth="207.0" promptText="Name" />
             <TextField fx:id="txtUnitPrice" layoutX="809.0" layoutY="319.0" prefHeight="26.0" prefWidth="92.0" promptText="Unit Price" />
             <TextField fx:id="txtQunatity" layoutX="809.0" layoutY="355.0" prefHeight="26.0" prefWidth="92.0" promptText="Quantity" />
@@ -47,15 +47,16 @@
             <Button layoutX="711.0" layoutY="510.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" prefHeight="26.0" prefWidth="207.0" text="Place Order" />
             <TextField fx:id="txtDiscount" layoutX="707.0" layoutY="355.0" prefHeight="26.0" prefWidth="92.0" promptText="Discount (%)" />
             <ComboBox fx:id="cmbItems" layoutX="707.0" layoutY="277.0" onAction="#cmbItemsOnAction" prefHeight="26.0" prefWidth="207.0" promptText="Item Code , Desc" />
-            <Line endX="100.0" layoutX="809.0" layoutY="179.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="809.0" layoutY="175.0" startX="-100.0" />
             <Line endX="100.0" layoutX="810.0" layoutY="266.0" startX="-100.0" />
             <Line endX="100.0" layoutX="812.0" layoutY="441.0" startX="-100.0" />
-            <Label alignment="CENTER" layoutX="749.0" layoutY="143.0" prefHeight="31.0" prefWidth="117.0" text="Order Details">
+            <Label alignment="CENTER" layoutX="749.0" layoutY="139.0" prefHeight="31.0" prefWidth="117.0" text="Order Details">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <TextField fx:id="txtItemCode" layoutX="707.0" layoutY="319.0" prefHeight="26.0" prefWidth="92.0" promptText="ItemCode" />
+            <TextField fx:id="txtOrderId" layoutX="709.0" layoutY="190.0" onKeyPressed="#txtCustomerIdOnKeyPressed" prefHeight="26.0" prefWidth="83.0" promptText="Order ID" />
          </children>
       </AnchorPane>
    </children>
