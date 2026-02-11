@@ -1,5 +1,6 @@
 package service.impl;
 
+import db.DBConnection;
 import dto.CartDto;
 import dto.ItemDto;
 import dto.OrderDetailDto;
@@ -11,6 +12,9 @@ import service.CustomerBo;
 import service.ItemBo;
 import service.PlaceOrderBo;
 import service.PlaceOrderDetailsBo;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class PlaceOrderBoImpl implements PlaceOrderBo {
 
@@ -35,10 +39,30 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public void addOrder(OrderDto orderDto, ObservableList<CartDto> addCart) {
-        placeOrderDao.addOrder(orderDto);
-        placeOrderDetailsBo.addOrder(orderDto, addCart);
-        itemBo.updateItemQty(orderDto,addCart);
+    public void addOrder(OrderDto orderDto, ObservableList<CartDto> addCart) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        try{
+           connection.setAutoCommit(false);
+           boolean isAddOrder = placeOrderDao.addOrder(orderDto);
+           System.out.println("Order Added: "+ isAddOrder);
+
+           if(isAddOrder) {
+               boolean isOrderDetails = placeOrderDetailsBo.addOrder(orderDto, addCart);
+               System.out.println("Order Details: "+isOrderDetails);
+               if (isOrderDetails) {
+                   boolean isUpdateItem = itemBo.updateItemQty(orderDto, addCart);
+                   System.out.println("Item Quantity: "+isUpdateItem);
+                   if(isUpdateItem){
+                       connection.commit();
+                   }
+               }
+           }
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            connection.setAutoCommit(true);
+        }
     }
 
     @Override

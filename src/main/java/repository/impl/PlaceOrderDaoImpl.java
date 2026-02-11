@@ -1,7 +1,6 @@
 package repository.impl;
 
 import db.DBConnection;
-import dto.OrderDetailDto;
 import dto.OrderDto;
 import repository.PlaceOrderDao;
 
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 
 public class PlaceOrderDaoImpl implements PlaceOrderDao {
     @Override
-    public void addOrder(OrderDto orderDto) {
+    public boolean addOrder(OrderDto orderDto) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders VALUES (?,?,?)");
@@ -19,7 +18,7 @@ public class PlaceOrderDaoImpl implements PlaceOrderDao {
             preparedStatement.setObject(2,orderDto.getOrderDate());
             preparedStatement.setObject(3,orderDto.getCustomerId());
 
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

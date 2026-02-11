@@ -13,5 +13,5 @@ public interface PlaceOrderBo {
     String getItemCode(String value);
     ObservableList<ItemDto> getAllItems();
     String getCustomerNameById(String text);
-    void addOrder(OrderDto orderDto, ObservableList<CartDto> addCart);
+    void addOrder(OrderDto orderDto, ObservableList<CartDto> addCart) throws SQLException;
 }
