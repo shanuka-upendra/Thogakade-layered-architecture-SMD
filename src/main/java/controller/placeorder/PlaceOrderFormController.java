@@ -100,7 +100,6 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         if(!isValidate())return;
-        System.out.println(!isValidate());
         try {
             placeOrderBo.addOrder(new OrderDto(
                     txtOrderId.getText(),
