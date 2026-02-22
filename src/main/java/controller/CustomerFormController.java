@@ -1,15 +1,21 @@
 package controller;
 
 import config.Config;
+import db.DBConnection;
 import dto.CustomerDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import service.CustomerBo;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -138,6 +144,23 @@ public class CustomerFormController implements Initializable {
         }
 
     }
+
+    @FXML
+    void btnGenerateReportOnAction(ActionEvent event) {
+
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/report/2026-customer-report.jrxml");
+            JasperReport report = JasperCompileManager.compileReport(design);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report,null, DBConnection.getInstance().getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint,"customer-report.pdf");
+            JasperViewer.viewReport(jasperPrint,false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     void loadTableCustomers() {
         tblCustomers.setItems(customerBo.getAllCustomers());
